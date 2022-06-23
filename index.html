@@ -12,10 +12,10 @@
   <header>  
     
     <div class="cube">
-        <img src="image/a.png" alt="">
-        <img src="image/b.png" alt="">
-        <img src="image/c.png" alt="">
-        <img src="image/d.png" alt="">
+        <img src="image/a.jpg" alt="">
+        <img src="image/b.jpg" alt="">
+        <img src="image/c.jpg" alt="">
+        <img src="image/d.jpg" alt="">
     </div>
 
     <h1><a href="index.html">Let's...</a></h1>
@@ -53,9 +53,9 @@
 
       <div class="dateList">
         <h3>date</h3>
-
-
-        
+          
+            <div id="nav">    </div>          
+          
       </div>
 
       <div class="skdList">
@@ -64,12 +64,18 @@
     </div>
 
   <div class="articleCenter">
-    <h2>articleCenter</h2>
+      <div id="content">
+        <h2>Welcome!!!</h2>
+        <h2>Let's Study with Me.</h2>
+      </div>
 
   </div>
 
   <div class="articleRight">
-    <h2>articleRight</h2>
+    <div id="video">
+      <h2>Stay with Me</h2>
+
+    </div>
   </div>
 </div>
 
@@ -79,16 +85,6 @@
 <div class="footer">
   <h2>footer</h2>
 </div>
-
-
-
-
-
-
-
-
-
-
     
       <script>
           let deg = 0;
@@ -97,8 +93,40 @@
               document.querySelector(".cube").style.transform = "rotateX("+deg+"deg)";
           }, 2000)
 
-        
 
+          function fetchPage(name){
+            fetch('./data/'+name).then(function(response){
+              response.text().then(function(text){
+                let content = text.split('<br>')
+                document.querySelector('#content').innerHTML = '<h2>'+name+'</h2>'+content[1] ;
+                document.querySelector('#video').innerHTML = content[0];
+              }) ;
+            }) ;
+          }
+
+          fetch('./data/filelist').then(function(response){
+            response.text().then(function(text){
+              var items = text.split(',') ;
+              var i = 0 ;
+              var lists = '' ;
+              while(i < items.length){
+                var item = items[i] ;
+                item = item.trim() ;
+                // var list = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>' ;
+                var list = `<li><a href="#!${item}" onclick="fetchPage('${item}')">${item}</a></li>` ;
+                lists = lists + list ;
+                i = i + 1 ;
+              }
+              document.querySelector('#nav').innerHTML = lists ;
+            }) ;
+          }) ;
+         
+
+          if(location.hash){
+            fetchPage(location.hash.substr(2)) ;
+          } else{
+            // fetchPage('welcome') ;
+          }
 
       </script>
     
