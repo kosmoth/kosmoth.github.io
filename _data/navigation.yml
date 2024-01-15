@@ -24,10 +24,8 @@ categories:
     url: /categories/categories2/
   - title: "title3"
     url: /categories/categories3/
-  - title: "title4"
-    children:
-      - title: "categories4"
-        url: /categories/categories4/
-      - title: "Categories5"
-        url: /categories/categories5/ 
-    
+  - title: "categories4"
+    url: /categories/categories4/
+  - title: "Categories5"
+    url: /categories/categories5/ 
+  
