@@ -2,32 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>study...English.Coding.Javascript.python.stock...</title>
+    <link rel="stylesheet" href="newStyle.css">
 </head>
 <body>
-    <h1>Hello World!!!!</h1>
 
-    <div>
-        <a href="http://kosmoth.iptime.org" target="_blank">raspberryPi</a>
-    </div>
-    <div>
-        <a href="https://github.com/" target="_blank">github</a>
-    </div>
-
-    <div>
-        <a href="https://www.youtube.com/cnn10" target="_blank">cnn10</a>
+  <header>  
+    
+    <div class="cube">
+        <img src="image/a.jpg" alt="">
+        <img src="image/b.jpg" alt="">
+        <img src="image/c.jpg" alt="">
+        <img src="image/d.jpg" alt="">
     </div>
 
-    <div>
-        <a href="https://transcripts.cnn.com/show/sn" target="_blank">cnn10 transcripts</a>
+    <h1><a href="index.html">Let's...</a></h1>
+
+    <div class="container">
+
+      <div class="flip-btn">
+          <div class="front"><img src="image/cnn10.jpg" alt="youtube/cnn10"></div>
+          <div class="back"><a href="https://youtube.com/cnn10" target="_blank"><img src="image/youtube.png" alt="youtube"></a></div>
+      </div>
+
+      <div class="flip-btn">
+          <div class="front"><img src="image/script.jpg" alt="youtube"></div>
+          <div class="back"><a href="https://transcripts.cnn.com/show/sn" target="_blank"><img src="image/cnn.jpg" alt="transcripts.cnn.com/shwo/sn"></a></div>
+      </div>
+
+      <div class="flip-btn">
+          <div class="front"><img src="image/saperis.jpg" alt="saperis"></div>
+          <div class="back"><a href="https://youtube.com/c/saperis" target="_blank"><img src="image/youtube.png" alt="youtube"></a></div>
+      </div>
+
+      <div class="flip-btn">
+          <div class="front"><img src="image/saenghwal.png" alt="생활코딩"></div>
+          <div class="back"><a href="https://www.opentutorials.org/course/1" target="_blank"><img src="image/opentutorials.png" alt="opentutorials"></a></div>
+      </div>
+
+    </div>  
+
+  </header>
+    
+  <hr>
+
+  <div class="article">
+    <div class="articleLeft">
+
+      <div class="dateList">
+        <h3>CNN 10</h3>
+          
+            <div id="nav">    </div>          
+          
+      </div>
+
+      <div class="skdList">
+        <h3>Links</h3>
+        
+        <div id="listNav">    </div>
+        
+      </div>
+      
     </div>
 
-    <div id="video-container">
-        <!-- Replace 'YOUR_YOUTUBE_VIDEO_EMBED_CODE' with the actual embed code for the latest CNN10 video -->
-        <iframe src="https://www.youtube.com/embed/CxkrwCSTn5Q" title="North Carolina schools get an AI guidebook | January 24, 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen autoplay></iframe>
+  <div class="articleCenter">
+      <div id="content">
+        <h2>Welcome!!!</h2>
+        <h2>Let's Study with Me.</h2>
+      </div>
+
+  </div>
+
+  <div class="articleRight">
+    <div id="video">
+      <h2>Stay with Me</h2>
+
     </div>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="footer">
+  <h2>Footer</h2>
+  <h3><a href="./kang_Eng.pdf" target="_blank">강성태 영단어</a></h3>
+  <iframe src="./kang_Eng.pdf" style="width:100%;height:600px;"></iframe>
+
+
+  
+</div>
+    
+      <script>
+          let deg = 0;
+          setInterval(() => {
+              deg = deg - 90;
+              document.querySelector(".cube").style.transform = "rotateX("+deg+"deg)";
+          }, 2000)
+
+
+          function fetchPage(name){
+            fetch('data/'+name).then(function(response){
+              response.text().then(function(text){
+                let content = text.split('<br>')
+                document.querySelector('#content').innerHTML = '<h2>'+name+'</h2>'+content[1] ;
+                document.querySelector('#video').innerHTML = content[0];
+              }) ;
+            }) ;
+          }
+
+          fetch('data/filelist').then(function(response){
+            response.text().then(function(text){
+              var items = text.split(',') ;
+              var i = 0 ;
+              var lists = '' ;
+              while(i < items.length){
+                var item = items[i] ;
+                item = item.trim() ;
+                // var list = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>' ;
+                var list = `<li><a href="#!${item}" onclick="fetchPage('${item}')">${item}</a></li>` ;
+                lists = lists + list ;
+                i = i + 1 ;
+              }
+              document.querySelector('#nav').innerHTML = lists ;
+            }) ;
+          }) ;
+
+          fetch('linkList.html').then(function(response){
+            response.text().then(function(text){
+              var items = text.split(',') ;
+              var i = 0 ;
+              var lists = '' ;
+              while(i < items.length){
+                var item = items[i] ;
+                item = item.trim() ;
+                var list = '<li>'+ item + '</li>' ;
+                lists = lists + list ;
+                i = i + 1 ;
+              }
+              document.querySelector('#listNav').innerHTML = lists ;
+            }) ;
+          }) ;
+
+         
+
+          if(location.hash){
+            fetchPage(location.hash.substr(2)) ;
+          } else{
+            // fetchPage('welcome') ;
+          }
+
+      </script>
     
 </body>
 </html>
