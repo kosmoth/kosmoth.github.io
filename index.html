@@ -1,14 +1,33 @@
----
-title: Home
-layout: base
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello World!!!!</h1>
 
-<h1>My Latest Blogs</h1>
+    <div>
+        <a href="http://kosmoth.iptime.org" target="_blank">raspberryPi</a>
+    </div>
+    <div>
+        <a href="https://github.com/" target="_blank">github</a>
+    </div>
 
-<div class="blog-post">
-    {% for post in site.posts limit:5 %}
-    <h2><a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a><h2>
-    <h3><i class="fas fa-calendar-alt"></i> {{ post.date | date_to_long_string }}</h3>
-    <p>{{ post.excerpt }} <a href="{{ post.url | absolute_url }}">[...]</a></p>
-    {% endfor -%}
-</div>
+    <div>
+        <a href="https://www.youtube.com/cnn10" target="_blank">cnn10</a>
+    </div>
+
+    <div>
+        <a href="https://transcripts.cnn.com/show/sn" target="_blank">cnn10 transcripts</a>
+    </div>
+
+    <div id="video-container">
+        <!-- Replace 'YOUR_YOUTUBE_VIDEO_EMBED_CODE' with the actual embed code for the latest CNN10 video -->
+        <iframe src="https://www.youtube.com/embed/CxkrwCSTn5Q" title="North Carolina schools get an AI guidebook | January 24, 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen autoplay></iframe>
+    </div>
+    
+</body>
+</html>
